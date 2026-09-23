@@ -7,7 +7,7 @@
 <meta name="description" content="Monitoramento automático de casas com quintal para alugar em Maricá-RJ." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#05070a;
@@ -25,6 +25,8 @@
     --ideal-soft:#12291f;
     --ok:#E3B75C;
     --ok-soft:#2b2412;
+    --grad-a:#CED4F4;
+    --grad-b:#5B6EF5;
     color-scheme:dark;
   }
   *{box-sizing:border-box;}
@@ -49,11 +51,12 @@
     margin:0 0 10px;
   }
   h1{
-    font-family:'Krona One',sans-serif;
-    font-weight:400;
-    font-size:clamp(1.5rem,4.2vw,2.3rem);
-    color:var(--accent);
-    letter-spacing:-0.01em;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-weight:800;
+    font-size:clamp(1.7rem,4.6vw,2.6rem);
+    color:#fff;
+    letter-spacing:-0.02em;
+    line-height:1.1;
     margin:0 0 10px;
     text-wrap:balance;
   }
@@ -94,23 +97,26 @@
   .actions{display:flex;gap:10px;flex-wrap:wrap;}
   .btn{
     display:inline-flex;align-items:center;gap:8px;
-    background:var(--teal);
-    color:#04140f;
-    font-weight:600;
+    background:linear-gradient(135deg,var(--grad-a),var(--grad-b));
+    color:#05070a;
+    font-weight:700;
     font-size:0.88rem;
-    padding:10px 16px;
-    border-radius:10px;
+    padding:11px 20px;
+    border-radius:100px;
     text-decoration:none;
     border:none;
     cursor:pointer;
     font-family:'Inter',sans-serif;
+    box-shadow:0 4px 20px -4px rgba(91,110,245,0.5);
   }
   .btn.secondary{
-    background:transparent;
+    background:var(--surface-2);
+    box-shadow:none;
     border:1px solid var(--border);
     color:var(--text);
   }
   .btn:hover{filter:brightness(1.08);}
+  .btn:disabled{opacity:0.7;cursor:default;}
 
   .notify-box{
     background:var(--surface);
@@ -140,18 +146,40 @@
     border:1px solid var(--border);
     border-radius:14px;
     padding:16px 18px;
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
   }
   .card.is-new{border-color:var(--teal);box-shadow:0 0 0 1px var(--teal-soft);}
+  .card.tier-ideal{
+    background:linear-gradient(160deg,#0f2c26 0%,var(--surface) 55%);
+    border-color:#1c3a30;
+  }
+  .thumb{
+    width:110px;height:82px;flex-shrink:0;
+    border-radius:10px;object-fit:cover;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+  }
+  .card-body{flex:1;min-width:0;}
   .card-top{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;}
   .card-title{font-weight:600;font-size:1rem;}
   .card-address{color:var(--text-muted);font-size:0.85rem;margin-top:2px;}
   .price{
-    font-family:'Krona One',sans-serif;
-    font-size:1.2rem;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-weight:800;
+    font-size:1.25rem;
     font-variant-numeric:tabular-nums;
-    color:var(--accent);
+    color:#fff;
     white-space:nowrap;
   }
+  .sort-toggle{display:flex;gap:6px;margin-bottom:14px;}
+  .sort-btn{
+    background:var(--surface-2);border:1px solid var(--border);color:var(--text-muted);
+    font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:600;
+    padding:6px 14px;border-radius:100px;cursor:pointer;
+  }
+  .sort-btn.active{background:var(--surface);color:var(--accent);border-color:var(--accent-dim);}
   .badge{
     display:inline-block;font-size:0.68rem;font-weight:700;
     padding:3px 9px;border-radius:100px;text-transform:uppercase;
@@ -178,6 +206,7 @@
   @media (max-width:480px){
     body{padding-inline:16px;}
     .status-bar{flex-direction:column;align-items:flex-start;}
+    .thumb{width:84px;height:84px;}
   }
 </style>
 </head>
@@ -221,7 +250,13 @@
     <div class="notify-status"><span class="dot" id="liveDot"></span><span id="liveText">aviso no PC desativado</span></div>
   </div>
 
-  <p class="section-label" id="listLabel">Anúncios</p>
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+    <p class="section-label" id="listLabel" style="margin:0;">Anúncios</p>
+    <div class="sort-toggle">
+      <button class="sort-btn active" id="sortPriceBtn">Mais barato</button>
+      <button class="sort-btn" id="sortNewBtn">Mais novo</button>
+    </div>
+  </div>
   <div id="listings"></div>
 
   <footer>
@@ -277,7 +312,19 @@
     return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
 
+  let sortMode = 'price'; // 'price' ou 'new'
+  let lastListings = [];
+
+  function sortListings(listings){
+    const copy = [...listings];
+    if(sortMode === 'new'){
+      return copy.sort((a,b) => new Date(b.foundAt||0) - new Date(a.foundAt||0));
+    }
+    return copy.sort((a,b) => (a.price||0) - (b.price||0));
+  }
+
   function render(listings){
+    lastListings = listings;
     const listEl = document.getElementById('listings');
     const totalEl = document.getElementById('totalCount');
     const labelEl = document.getElementById('listLabel');
@@ -289,34 +336,56 @@
       return;
     }
 
-    const sorted = [...listings].sort((a,b) => (a.price||0) - (b.price||0));
+    const sorted = sortListings(listings);
     const recentCutoff = Date.now() - 1000*60*60*6;
 
     listEl.innerHTML = sorted.map(d => {
       const badge = priceBadge(d.price||0);
       const isNew = d.foundAt && new Date(d.foundAt).getTime() > recentCutoff;
+      const cardClasses = ['card'];
+      if(isNew) cardClasses.push('is-new');
+      if(badge.cls === 'ideal') cardClasses.push('tier-ideal');
+      const thumb = d.image
+        ? `<img class="thumb" src="${escapeHtml(d.image)}" alt="" loading="lazy" onerror="this.remove()">`
+        : `<div class="thumb"></div>`;
       return `
-        <div class="card ${isNew ? 'is-new' : ''}">
-          <div class="card-top">
-            <div>
-              <div class="card-title">${escapeHtml(d.title || 'Casa em Maricá')}</div>
-              <div class="card-address">${escapeHtml(d.address || 'Maricá - RJ')}</div>
-              <span class="badge ${badge.cls}">${badge.label}</span>
-              ${isNew ? '<span class="badge new">Novo</span>' : ''}
+        <div class="${cardClasses.join(' ')}">
+          ${thumb}
+          <div class="card-body">
+            <div class="card-top">
+              <div>
+                <div class="card-title">${escapeHtml(d.title || 'Casa em Maricá')}</div>
+                <div class="card-address">${escapeHtml(d.address || 'Maricá - RJ')}</div>
+                <span class="badge ${badge.cls}">${badge.label}</span>
+                ${isNew ? '<span class="badge new">Novo</span>' : ''}
+              </div>
+              <div class="price">${fmtPrice(d.price||0)}</div>
             </div>
-            <div class="price">${fmtPrice(d.price||0)}</div>
-          </div>
-          <div class="card-meta">
-            <span>🛏️ ${escapeHtml(d.bedrooms || '?')} quartos</span>
-            <span>🌐 ${escapeHtml(d.site || '')}</span>
-          </div>
-          <div class="card-bottom">
-            <span class="found-at">encontrado ${fmtRelative(d.foundAt)}</span>
-            ${d.url ? `<a class="card-link" href="${escapeHtml(d.url)}" target="_blank" rel="noopener">Ver anúncio →</a>` : ''}
+            <div class="card-meta">
+              <span>🛏️ ${escapeHtml(d.bedrooms || '?')} quartos</span>
+              <span>🌐 ${escapeHtml(d.site || '')}</span>
+            </div>
+            <div class="card-bottom">
+              <span class="found-at">encontrado ${fmtRelative(d.foundAt)}</span>
+              ${d.url ? `<a class="card-link" href="${escapeHtml(d.url)}" target="_blank" rel="noopener">Ver anúncio →</a>` : ''}
+            </div>
           </div>
         </div>`;
     }).join('');
   }
+
+  document.getElementById('sortPriceBtn').addEventListener('click', () => {
+    sortMode = 'price';
+    document.getElementById('sortPriceBtn').classList.add('active');
+    document.getElementById('sortNewBtn').classList.remove('active');
+    render(lastListings);
+  });
+  document.getElementById('sortNewBtn').addEventListener('click', () => {
+    sortMode = 'new';
+    document.getElementById('sortNewBtn').classList.add('active');
+    document.getElementById('sortPriceBtn').classList.remove('active');
+    render(lastListings);
+  });
 
   async function loadData(){
     try{

@@ -224,6 +224,14 @@ def extract_listing(page, site_name, url):
     if not looks_like_house(text[:600]) and not looks_like_house(page.title() or ""):
         return None
 
+    image = ""
+    try:
+        image = page.get_attribute("meta[property='og:image']", "content", timeout=2000) or ""
+        if not image:
+            image = page.get_attribute("meta[name='twitter:image']", "content", timeout=2000) or ""
+    except Exception:
+        pass
+
     bedrooms = find_bedrooms(text)
     if bedrooms is None or bedrooms < MIN_BEDROOMS:
         return None
@@ -302,6 +310,7 @@ def extract_listing(page, site_name, url):
         "hasYard": True,
         "site": site_name,
         "url": url,
+        "image": image,
         "foundAt": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
     }
 
