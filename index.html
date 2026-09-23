@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Radar de Casas Maricá</title>
+<meta name="description" content="Monitoramento automático de casas com quintal para alugar em Maricá-RJ." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#05070a;
+    --surface:#0d1420;
+    --surface-2:#121b28;
+    --border:#1c2733;
+    --text:#EAF0F4;
+    --text-muted:#8B98A6;
+    --accent:#CED4F4;
+    --accent-dim:#3a3f66;
+    --teal:#15A684;
+    --teal-soft:#0f2c26;
+    --lime:#dfff01;
+    --ideal:#7BE0A0;
+    --ideal-soft:#12291f;
+    --ok:#E3B75C;
+    --ok-soft:#2b2412;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.5;
+    padding-inline:20px;
+    padding-block:40px;
+  }
+  .wrap{max-width:920px;margin-inline:auto;}
+
+  header{margin-bottom:28px;}
+  .eyebrow{
+    font-family:'Inter',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:0.72rem;
+    color:var(--teal);
+    margin:0 0 10px;
+  }
+  h1{
+    font-family:'Krona One',sans-serif;
+    font-weight:400;
+    font-size:clamp(1.5rem,4.2vw,2.3rem);
+    color:var(--accent);
+    letter-spacing:-0.01em;
+    margin:0 0 10px;
+    text-wrap:balance;
+  }
+  .lead{
+    font-family:'Lora',serif;
+    font-style:italic;
+    color:var(--text-muted);
+    font-size:1rem;
+    max-width:60ch;
+    margin:0 0 20px;
+  }
+
+  .criteria{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
+  .chip{
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    color:var(--text);
+    padding:6px 13px;
+    border-radius:100px;
+    font-size:0.8rem;
+  }
+  .chip b{color:var(--lime);font-weight:600;}
+
+  .status-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px 20px;
+    margin-bottom:28px;
+  }
+  .status-bar .label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);}
+  .status-bar .value{font-size:0.98rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--accent);}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--teal);
+    color:#04140f;
+    font-weight:600;
+    font-size:0.88rem;
+    padding:10px 16px;
+    border-radius:10px;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+    font-family:'Inter',sans-serif;
+  }
+  .btn.secondary{
+    background:transparent;
+    border:1px solid var(--border);
+    color:var(--text);
+  }
+  .btn:hover{filter:brightness(1.08);}
+
+  .notify-box{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px 20px;
+    margin-bottom:28px;
+    font-size:0.86rem;
+    color:var(--text-muted);
+  }
+  .notify-box strong{color:var(--text);}
+  .notify-status{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:0.78rem;margin-top:8px;
+  }
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--text-muted);}
+  .dot.live{background:var(--teal);box-shadow:0 0 0 3px var(--teal-soft);}
+
+  .section-label{
+    font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;
+    color:var(--text-muted);margin:0 0 14px;
+  }
+
+  #listings{display:flex;flex-direction:column;gap:12px;}
+  .card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px 18px;
+  }
+  .card.is-new{border-color:var(--teal);box-shadow:0 0 0 1px var(--teal-soft);}
+  .card-top{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+  .card-title{font-weight:600;font-size:1rem;}
+  .card-address{color:var(--text-muted);font-size:0.85rem;margin-top:2px;}
+  .price{
+    font-family:'Krona One',sans-serif;
+    font-size:1.2rem;
+    font-variant-numeric:tabular-nums;
+    color:var(--accent);
+    white-space:nowrap;
+  }
+  .badge{
+    display:inline-block;font-size:0.68rem;font-weight:700;
+    padding:3px 9px;border-radius:100px;text-transform:uppercase;
+    letter-spacing:0.04em;margin-top:6px;
+  }
+  .badge.ideal{background:var(--ideal-soft);color:var(--ideal);}
+  .badge.ok{background:var(--ok-soft);color:var(--ok);}
+  .badge.new{background:var(--teal-soft);color:var(--teal);}
+  .card-meta{display:flex;flex-wrap:wrap;gap:14px;font-size:0.82rem;color:var(--text-muted);margin-top:10px;}
+  .card-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap;}
+  .found-at{font-size:0.76rem;color:var(--text-muted);}
+  .card-link{color:var(--teal);font-weight:600;text-decoration:none;font-size:0.86rem;}
+  .card-link:hover{text-decoration:underline;}
+
+  .empty{
+    background:var(--surface);border:1px dashed var(--border);border-radius:14px;
+    padding:30px 20px;text-align:center;color:var(--text-muted);font-size:0.9rem;
+  }
+  .empty strong{color:var(--text);display:block;margin-bottom:6px;}
+
+  footer{margin-top:32px;padding-top:20px;border-top:1px solid var(--border);font-size:0.78rem;color:var(--text-muted);}
+  footer a{color:var(--teal);}
+
+  @media (max-width:480px){
+    body{padding-inline:16px;}
+    .status-bar{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Monitoramento automático</p>
+    <h1>Radar de Casas Maricá</h1>
+    <p class="lead">Vasculhando ZAP, OLX, QuintoAndar, Chaves na Mão e Renato Imóveis por casas com quintal, todo santo dia — sem você precisar abrir nenhum site.</p>
+  </header>
+
+  <div class="criteria">
+    <span class="chip">📍 <b>Maricá-RJ</b></span>
+    <span class="chip">🛏️ <b>2+ quartos</b></span>
+    <span class="chip">🌳 <b>Com quintal</b></span>
+    <span class="chip">💰 até <b>R$ 3.500</b> total</span>
+    <span class="chip">🎯 ideal <b>R$ 2.500</b></span>
+  </div>
+
+  <div class="status-bar">
+    <div>
+      <div class="label">Última varredura</div>
+      <div class="value" id="lastChecked">carregando...</div>
+    </div>
+    <div>
+      <div class="label">Anúncios encontrados</div>
+      <div class="value" id="totalCount">–</div>
+    </div>
+    <div class="actions">
+      <a class="btn" id="runNowBtn" href="#" target="_blank" rel="noopener">▶ Rodar varredura agora</a>
+      <button class="btn secondary" id="notifyBtn">🔔 Ativar aviso no PC</button>
+    </div>
+  </div>
+
+  <div class="notify-box">
+    <strong>Como receber os avisos</strong><br>
+    Celular: instale o app <strong>ntfy</strong> (grátis, iOS/Android) e inscreva-se no tópico
+    <code id="topicCode">radar-marica-0e5a3b9c</code>.
+    PC: clique em "Ativar aviso no PC" acima e deixe esta aba aberta.
+    <div class="notify-status"><span class="dot" id="liveDot"></span><span id="liveText">aviso no PC desativado</span></div>
+  </div>
+
+  <p class="section-label" id="listLabel">Anúncios</p>
+  <div id="listings"></div>
+
+  <footer>
+    Roda sozinho todo dia via GitHub Actions. Código e histórico:
+    <a href="https://github.com" id="repoLink" target="_blank" rel="noopener">ver repositório</a>.
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  const NTFY_TOPIC = "radar-marica-0e5a3b9c";
+  document.getElementById("topicCode").textContent = NTFY_TOPIC;
+
+  // Fill "run now" link + repo link from the page's own GitHub Pages URL when possible
+  (function inferRepo(){
+    try {
+      const host = location.hostname; // <user>.github.io
+      const pathParts = location.pathname.split("/").filter(Boolean);
+      if (host.endsWith("github.io") && pathParts.length > 0) {
+        const user = host.split(".")[0];
+        const repo = pathParts[0];
+        document.getElementById("runNowBtn").href = `https://github.com/${user}/${repo}/actions/workflows/scan.yml`;
+        document.getElementById("repoLink").href = `https://github.com/${user}/${repo}`;
+      }
+    } catch(e){}
+  })();
+
+  function fmtPrice(n){
+    try{ return n.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}); }
+    catch(e){ return 'R$ ' + n; }
+  }
+  function priceBadge(total){
+    if(total <= 2500) return {cls:'ideal', label:'Ideal'};
+    if(total <= 3000) return {cls:'ideal', label:'Ótimo'};
+    return {cls:'ok', label:'Dentro do teto'};
+  }
+  function fmtRelative(iso){
+    if(!iso) return '';
+    const d = new Date(iso);
+    if(isNaN(d)) return '';
+    const mins = Math.round((Date.now() - d.getTime())/60000);
+    if(mins < 1) return 'agora mesmo';
+    if(mins < 60) return `há ${mins} min`;
+    const hours = Math.round(mins/60);
+    if(hours < 24) return `há ${hours}h`;
+    return `há ${Math.round(hours/24)}d`;
+  }
+  function escapeHtml(s){
+    return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function render(listings){
+    const listEl = document.getElementById('listings');
+    const totalEl = document.getElementById('totalCount');
+    const labelEl = document.getElementById('listLabel');
+    totalEl.textContent = listings.length;
+    labelEl.textContent = listings.length ? `Anúncios encontrados (${listings.length})` : 'Anúncios';
+
+    if(!listings.length){
+      listEl.innerHTML = `<div class="empty"><strong>Nenhum anúncio ainda</strong>A primeira varredura do GitHub Actions ainda não rodou ou não achou nada. Isso é normal na primeira hora.</div>`;
+      return;
+    }
+
+    const sorted = [...listings].sort((a,b) => (a.price||0) - (b.price||0));
+    const recentCutoff = Date.now() - 1000*60*60*6;
+
+    listEl.innerHTML = sorted.map(d => {
+      const badge = priceBadge(d.price||0);
+      const isNew = d.foundAt && new Date(d.foundAt).getTime() > recentCutoff;
+      return `
+        <div class="card ${isNew ? 'is-new' : ''}">
+          <div class="card-top">
+            <div>
+              <div class="card-title">${escapeHtml(d.title || 'Casa em Maricá')}</div>
+              <div class="card-address">${escapeHtml(d.address || 'Maricá - RJ')}</div>
+              <span class="badge ${badge.cls}">${badge.label}</span>
+              ${isNew ? '<span class="badge new">Novo</span>' : ''}
+            </div>
+            <div class="price">${fmtPrice(d.price||0)}</div>
+          </div>
+          <div class="card-meta">
+            <span>🛏️ ${escapeHtml(d.bedrooms || '?')} quartos</span>
+            <span>🌐 ${escapeHtml(d.site || '')}</span>
+          </div>
+          <div class="card-bottom">
+            <span class="found-at">encontrado ${fmtRelative(d.foundAt)}</span>
+            ${d.url ? `<a class="card-link" href="${escapeHtml(d.url)}" target="_blank" rel="noopener">Ver anúncio →</a>` : ''}
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  async function loadData(){
+    try{
+      const res = await fetch('data/listings.json', {cache:'no-store'});
+      const listings = await res.json();
+      render(listings);
+      if(listings.length){
+        const latest = listings.reduce((a,b) => new Date(a.foundAt) > new Date(b.foundAt) ? a : b);
+        const d = new Date(latest.foundAt);
+        document.getElementById('lastChecked').textContent = isNaN(d) ? '—' : d.toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'});
+      } else {
+        document.getElementById('lastChecked').textContent = 'ainda não rodou';
+      }
+    }catch(e){
+      document.getElementById('listings').innerHTML = `<div class="empty"><strong>Não consegui carregar os dados</strong>Confira se o GitHub Pages está publicando a pasta certa.</div>`;
+    }
+  }
+  loadData();
+  setInterval(loadData, 5 * 60 * 1000);
+
+  // Desktop notifications via ntfy SSE while this tab stays open
+  const notifyBtn = document.getElementById('notifyBtn');
+  const liveDot = document.getElementById('liveDot');
+  const liveText = document.getElementById('liveText');
+  let source = null;
+
+  function startLive(){
+    if(source) return;
+    try{
+      source = new EventSource(`https://ntfy.sh/${NTFY_TOPIC}/sse`);
+      source.onopen = () => { liveDot.classList.add('live'); liveText.textContent = 'aviso no PC ativo'; };
+      source.onerror = () => { liveDot.classList.remove('live'); liveText.textContent = 'reconectando...'; };
+      source.onmessage = (ev) => {
+        try{
+          const data = JSON.parse(ev.data);
+          if(data.event !== 'message') return;
+          if(Notification.permission === 'granted'){
+            const n = new Notification(data.title || 'Radar de Casas Maricá', {
+              body: data.message || '',
+              icon: undefined,
+            });
+            n.onclick = () => { if(data.click) window.open(data.click, '_blank'); };
+          }
+          loadData();
+        }catch(e){}
+      };
+    }catch(e){}
+  }
+
+  notifyBtn.addEventListener('click', async () => {
+    try{
+      const perm = await Notification.requestPermission();
+      if(perm === 'granted'){ startLive(); }
+      else { liveText.textContent = 'permissão de notificação negada'; }
+    }catch(e){
+      liveText.textContent = 'notificações não suportadas neste navegador';
+    }
+  });
+
+  if(typeof Notification !== 'undefined' && Notification.permission === 'granted'){
+    startLive();
+  }
+})();
+</script>
+</body>
+</html>
