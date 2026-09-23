@@ -178,5 +178,20 @@
     "url": "https://www.quintoandar.com.br/imovel/895667093/alugar/casa-2-quartos-pindobas-marica",
     "image": "https://www.quintoandar.com.br/img/med/original895667093-600.743245020001DSC06971.jpg",
     "foundAt": "2026-09-23T19:58:48Z"
+  },
+  {
+    "id": "quintoandar-com-br-imovel-895287702-alugar-casa-2-quartos-guaratiba-marica",
+    "title": "Casa com 2 quartos para alugar em Guaratiba, Maricá por R$ 1.660,00",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 1660.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 1660.0,
+    "hasYard": true,
+    "site": "QuintoAndar",
+    "url": "https://www.quintoandar.com.br/imovel/895287702/alugar/casa-2-quartos-guaratiba-marica",
+    "image": "https://www.quintoandar.com.br/img/med/original895287702-64.85051274788201image.jpg",
+    "foundAt": "2026-09-23T22:18:35Z"
   }
 ]
