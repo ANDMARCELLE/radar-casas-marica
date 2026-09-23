@@ -25,19 +25,9 @@ Monitoramento automático de casas com quintal para alugar em Maricá-RJ (ZAP Im
 
 ## Rodar uma varredura na hora ("botão")
 
-O painel tem um botão **"▶ Rodar varredura agora"**. Pra ele disparar a varredura sem sair da página, precisa de um token de acesso **bem restrito** colado direto no `index.html`:
+O painel tem um botão **"▶ Rodar varredura agora"**. Ele te leva direto pra aba Actions do GitHub — lá é só clicar em **Run workflow**.
 
-1. Vá em [github.com/settings/personal-access-tokens/new](https://github.com/settings/personal-access-tokens/new) (token **fine-grained**, não o "classic")
-2. Nome: `radar-casas-marica-dispatch`
-3. Expiration: 90 dias (vai precisar trocar depois de vencer)
-4. Repository access: **Only select repositories** → escolha `radar-casas-marica`
-5. Em **Permissions → Repository permissions**, ache **Actions** e mude para **Read and write** (é a única permissão que precisa marcar)
-6. **Generate token** e copie o valor
-7. No GitHub, abra `index.html` → ícone de lápis (editar) → ache a linha `const GITHUB_TOKEN = "COLE_SEU_TOKEN_AQUI";` → troque pelo token → **Commit changes** direto na `main`
-
-⚠️ **Esse token fica visível pra qualquer um que abrir o código-fonte da página** (ela é pública). Por isso ele só pode ter permissão de "Actions: Read and write" nesse único repositório — nunca use um token "classic" ou com escopo `repo` aqui. Na pior das hipóteses, alguém que pegasse esse token só conseguiria disparar varreduras à toa (grátis, sem custo, repositório público) — não consegue ler nada privado nem alterar código.
-
-Se preferir não fazer isso, o botão continua funcionando do jeito simples: ele te leva pra aba Actions do GitHub, onde é só clicar em **Run workflow**.
+Chegamos a testar um botão 100% dentro da página (sem sair pro GitHub), usando um token de acesso restrito embutido no `index.html`. Não funciona: o próprio GitHub detecta e **revoga automaticamente** qualquer token dele publicado num repositório público, em minutos, como proteção de segurança — não tem como desativar isso nem contornar. Por isso o botão só abre a tela certa; o clique final em "Run workflow" precisa ser manual mesmo.
 
 ## Limitações conhecidas
 

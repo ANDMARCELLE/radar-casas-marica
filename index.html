@@ -236,12 +236,11 @@
   const NTFY_TOPIC = "radar-marica-0e5a3b9c";
   document.getElementById("topicCode").textContent = NTFY_TOPIC;
 
-  // Token de acesso restrito (só permissão "Actions: Read and write" NESTE
-  // repositório) — usado só pra apertar o botão "Rodar varredura agora"
-  // sem sair da página. É público (qualquer um vendo o código-fonte desta
-  // página consegue ler), então NUNCA coloque aqui um token com mais
-  // permissão do que essa. Veja o README para como gerar/trocar.
-  const GITHUB_TOKEN = "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";
+  // Um token do GitHub embutido numa página pública é detectado e revogado
+  // automaticamente pelo próprio GitHub em minutos (proteção de segurança
+  // deles, sem exceção) — por isso esse botão não chama a API diretamente:
+  // ele só leva você até a tela onde o clique manual em "Run workflow"
+  // realmente funciona.
   const GITHUB_OWNER = "andmarcelle";
   const GITHUB_REPO = "radar-casas-marica";
   const WORKFLOW_FILE = "scan.yml";
@@ -250,39 +249,8 @@
   document.getElementById("repoLink").href = `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}`;
 
   const runBtn = document.getElementById("runNowBtn");
-  runBtn.addEventListener("click", async () => {
-    const hasToken = GITHUB_TOKEN && GITHUB_TOKEN !== "COLE_SEU_TOKEN_AQUI";
-    if (!hasToken) {
-      window.open(actionsUrl, "_blank", "noopener");
-      return;
-    }
-    runBtn.disabled = true;
-    const originalText = runBtn.textContent;
-    runBtn.textContent = "Iniciando...";
-    try {
-      const res = await fetch(
-        `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows/${WORKFLOW_FILE}/dispatches`,
-        {
-          method: "POST",
-          headers: {
-            "Authorization": `Bearer ${GITHUB_TOKEN}`,
-            "Accept": "application/vnd.github+json",
-            "X-GitHub-Api-Version": "2022-11-28",
-          },
-          body: JSON.stringify({ ref: "main" }),
-        }
-      );
-      if (res.status === 204) {
-        runBtn.textContent = "✔ Varredura iniciada!";
-        setTimeout(() => { runBtn.textContent = originalText; runBtn.disabled = false; }, 8000);
-      } else {
-        throw new Error(`HTTP ${res.status}`);
-      }
-    } catch (e) {
-      runBtn.textContent = originalText;
-      runBtn.disabled = false;
-      window.open(actionsUrl, "_blank", "noopener");
-    }
+  runBtn.addEventListener("click", () => {
+    window.open(actionsUrl, "_blank", "noopener");
   });
 
   function fmtPrice(n){
