@@ -230,8 +230,22 @@ def collect_renatoimoveis(page):
     return list(dict.fromkeys(hrefs))[:MAX_DETAIL_PAGES_PER_SITE]
 
 
+def collect_imovelweb(page):
+    # URL já filtrada por quintal + 2 quartos + ordenada do mais barato.
+    url = "https://www.imovelweb.com.br/casas-aluguel-marica-rj-areap-quintal-2-quartos-ordem-precio-menor.html"
+    page.goto(url, wait_until="domcontentloaded", timeout=45000)
+    page.wait_for_timeout(2500)
+    dismiss_cookie_banner(page)
+    hrefs = page.eval_on_selector_all(
+        "a[href*='/propriedades/']",
+        "els => els.map(e => e.href.split('?')[0])",
+    )
+    return list(dict.fromkeys(hrefs))[:MAX_DETAIL_PAGES_PER_SITE]
+
+
 SITES = {
     "ZAP Imóveis": collect_zap,
+    "Imovelweb": collect_imovelweb,
     "Chaves na Mão": collect_chavesnamao,
     "QuintoAndar": collect_quintoandar,
     "OLX": collect_olx,
@@ -267,7 +281,7 @@ def extract_listing(page, site_name, url):
     if bedrooms is None or bedrooms < MIN_BEDROOMS:
         return None
 
-    yard_ok = has_yard_mention(text) or site_name in ("ZAP Imóveis", "Chaves na Mão")
+    yard_ok = has_yard_mention(text) or site_name in ("ZAP Imóveis", "Chaves na Mão", "Imovelweb")
     if not yard_ok:
         return None
 
@@ -315,9 +329,15 @@ def extract_listing(page, site_name, url):
         condo, iptu = extract_condo_iptu(base_rent) if base_rent else (0, 0)
         total = round(base_rent + condo + iptu, 2) if base_rent else None
     else:
-        if not prices:
-            return None
-        base_rent = min(prices)
+        # Vários sites marcam o aluguel explicitamente ("Aluguel R$ X") —
+        # muito mais confiável do que "o menor R$ da página", que às vezes
+        # pega o IPTU ou o condomínio por engano.
+        m = re.search(r"Aluguel\s*R\$\s*([\d.,]+)", text, re.IGNORECASE)
+        base_rent = money_to_float("R$ " + m.group(1)) if m else None
+        if base_rent is None:
+            if not prices:
+                return None
+            base_rent = min(prices)
         condo, iptu = extract_condo_iptu(base_rent)
         total = round(base_rent + condo + iptu, 2)
 

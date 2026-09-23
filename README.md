@@ -1,6 +1,6 @@
 # Radar de Casas Maricá
 
-Monitoramento automático de casas com quintal para alugar em Maricá-RJ (ZAP Imóveis, OLX, QuintoAndar, Chaves na Mão, Renato Imóveis). Roda sozinho, de hora em hora, via GitHub Actions — sem depender de nenhuma sessão do Claude ficar aberta.
+Monitoramento automático de casas com quintal para alugar em Maricá-RJ (ZAP Imóveis, OLX, QuintoAndar, Chaves na Mão, Imovelweb, Renato Imóveis). Roda sozinho, de hora em hora, via GitHub Actions — sem depender de nenhuma sessão do Claude ficar aberta.
 
 - **Critérios**: casa, 2+ quartos, com quintal, custo total (aluguel + condomínio + IPTU) até R$ 3.500 — destaque para até R$ 2.500.
 - **Aviso**: push via [ntfy.sh](https://ntfy.sh) (celular, grátis, sem cadastro) + notificação no navegador enquanto a página do painel estiver aberta (PC).
