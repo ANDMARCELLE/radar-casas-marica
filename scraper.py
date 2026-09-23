@@ -10,6 +10,7 @@ o que é gratuito mas pode quebrar se um site mudar de layout.
 """
 import json
 import os
+import random
 import re
 import sys
 import time
@@ -23,6 +24,19 @@ DATA_FILE = ROOT / "data" / "listings.json"
 
 MAX_TOTAL_PRICE = 3500
 IDEAL_PRICE = 2500
+
+
+class SiteBlocked(Exception):
+    """A página respondeu com um bloqueio anti-robô (Cloudflare etc.)."""
+
+
+def is_blocked_page(text):
+    low = text[:500].lower()
+    return any(s in low for s in [
+        "you have been blocked", "sorry, you have been blocked",
+        "access denied", "attention required", "checking your browser",
+        "please verify you are a human",
+    ])
 GOOD_PRICE = 3000
 MIN_BEDROOMS = 2
 MAX_DETAIL_PAGES_PER_SITE = 20
@@ -145,7 +159,9 @@ def collect_zap(page):
         "a[href*='/imovel/aluguel-casa']",
         "els => els.map(e => e.href)",
     )
-    return list(dict.fromkeys(hrefs))[:MAX_DETAIL_PAGES_PER_SITE]
+    # ZAP bloqueia sessões que abrem muitos anúncios rápido — pede menos
+    # candidatos aqui pra reduzir o risco de bloqueio nesta rodada.
+    return list(dict.fromkeys(hrefs))[:8]
 
 
 def collect_chavesnamao(page):
@@ -178,11 +194,23 @@ def collect_olx(page):
     page.goto(url, wait_until="domcontentloaded", timeout=45000)
     page.wait_for_timeout(3000)
     dismiss_cookie_banner(page)
-    hrefs = page.eval_on_selector_all(
-        "a[href*='olx.com.br'][href*='/imoveis/']",
-        "els => els.map(e => e.href)",
-    )
-    hrefs = [h for h in hrefs if re.search(r"-\d{6,}$", h.split("?")[0])]
+
+    def grab():
+        hrefs = page.eval_on_selector_all(
+            "a[href*='olx.com.br'][href*='/imoveis/']",
+            "els => els.map(e => e.href)",
+        )
+        return [h for h in hrefs if re.search(r"-\d{6,}$", h.split("?")[0])]
+
+    hrefs = grab()
+    if not hrefs:
+        # A faixa de cookies às vezes ainda está fechando/animando na
+        # primeira tentativa e bloqueia a leitura dos cards — espera mais
+        # um pouco e tenta de novo antes de desistir do site nesta rodada.
+        page.wait_for_timeout(2500)
+        dismiss_cookie_banner(page)
+        page.wait_for_timeout(1500)
+        hrefs = grab()
     return list(dict.fromkeys(hrefs))[:MAX_DETAIL_PAGES_PER_SITE]
 
 
@@ -221,6 +249,9 @@ def extract_listing(page, site_name, url):
         log(f"  falha ao abrir {url}: {e}")
         return None
 
+    if is_blocked_page(text):
+        raise SiteBlocked(site_name)
+
     if not looks_like_house(text[:600]) and not looks_like_house(page.title() or ""):
         return None
 
@@ -242,6 +273,23 @@ def extract_listing(page, site_name, url):
 
     prices = [p for p in find_prices(text) if p and 200 <= p <= 20000]
 
+    def extract_condo_iptu(base_rent):
+        condo = 0
+        m = re.search(r"cond(?:om[íi]nio)?\.?\s*(?:R\$\s*[\d.,]+|isento)", text, re.IGNORECASE)
+        if m and "isento" not in m.group(0).lower():
+            val = money_to_float(re.search(r"R\$\s*[\d.,]+", m.group(0)).group()) or 0
+            if val != base_rent:
+                condo = val
+        iptu = 0
+        m = re.search(r"IPTU\.?\s*(?:R\$\s*[\d.,]+|isento)", text, re.IGNORECASE)
+        if m and "isento" not in m.group(0).lower():
+            val = money_to_float(re.search(r"R\$\s*[\d.,]+", m.group(0)).group()) or 0
+            if val > base_rent:
+                val = round(val / 12, 2)  # provavelmente valor anual
+            if val != base_rent and val != condo:
+                iptu = val
+        return condo, iptu
+
     # QuintoAndar anuncia o CUSTO TOTAL já pronto ("R$ 1.327 total") — usar isso
     # direto evita somar aluguel + condomínio + IPTU errado a partir de números
     # soltos na página.
@@ -256,39 +304,21 @@ def extract_listing(page, site_name, url):
         # que é uma fonte muito mais confiável do que o menor "R$" achado no texto.
         url_price = re.search(r"-RS(\d+)(?:/|$)", url)
         base_rent = float(url_price.group(1)) if url_price else (min(prices) if prices else None)
-        condo = 0
-        m = re.search(r"cond(?:om[íi]nio)?\.?\s*(?:R\$\s*[\d.,]+|isento)", text, re.IGNORECASE)
-        if m and "isento" not in m.group(0).lower():
-            val = money_to_float(re.search(r"R\$\s*[\d.,]+", m.group(0)).group()) or 0
-            if val != base_rent:
-                condo = val
-        iptu = 0
-        m = re.search(r"IPTU\.?\s*(?:R\$\s*[\d.,]+|isento)", text, re.IGNORECASE)
-        if m and "isento" not in m.group(0).lower():
-            val = money_to_float(re.search(r"R\$\s*[\d.,]+", m.group(0)).group()) or 0
-            if val > base_rent:
-                val = round(val / 12, 2)  # provavelmente valor anual
-            if val != base_rent and val != condo:
-                iptu = val
+        condo, iptu = extract_condo_iptu(base_rent) if base_rent else (0, 0)
+        total = round(base_rent + condo + iptu, 2) if base_rent else None
+    elif site_name == "ZAP Imóveis":
+        # O aluguel vem marcado com "/mês" logo depois do valor — não é
+        # necessariamente o menor "R$" da página (o condomínio costuma ser
+        # menor que o aluguel).
+        m = re.search(r"R\$\s*([\d.,]+)\s*/\s*m[êe]s", text, re.IGNORECASE)
+        base_rent = money_to_float("R$ " + m.group(1)) if m else (min(prices) if prices else None)
+        condo, iptu = extract_condo_iptu(base_rent) if base_rent else (0, 0)
         total = round(base_rent + condo + iptu, 2) if base_rent else None
     else:
         if not prices:
             return None
         base_rent = min(prices)
-        condo = 0
-        m = re.search(r"cond(?:om[íi]nio)?\.?\s*(?:R\$\s*[\d.,]+|isento)", text, re.IGNORECASE)
-        if m and "isento" not in m.group(0).lower():
-            val = money_to_float(re.search(r"R\$\s*[\d.,]+", m.group(0)).group()) or 0
-            if val != base_rent:
-                condo = val
-        iptu = 0
-        m = re.search(r"IPTU\.?\s*(?:R\$\s*[\d.,]+|isento)", text, re.IGNORECASE)
-        if m and "isento" not in m.group(0).lower():
-            val = money_to_float(re.search(r"R\$\s*[\d.,]+", m.group(0)).group()) or 0
-            if val > base_rent:
-                val = round(val / 12, 2)  # provavelmente valor anual
-            if val != base_rent and val != condo:
-                iptu = val
+        condo, iptu = extract_condo_iptu(base_rent)
         total = round(base_rent + condo + iptu, 2)
 
     if not total or total > MAX_TOTAL_PRICE:
@@ -343,14 +373,18 @@ def main():
             for url in urls:
                 if slug_id(url) in seen_ids:
                     continue
-                item = extract_listing(page, site_name, url)
+                try:
+                    item = extract_listing(page, site_name, url)
+                except SiteBlocked:
+                    log(f"  {site_name} bloqueou a sessão (anti-robô) — parando este site nesta rodada, sem inventar dados.")
+                    break
                 if item:
                     if item["id"] in seen_ids:
                         continue
                     log(f"  ✔ NOVO: {item['title']} — R$ {item['price']:.0f} ({site_name})")
                     new_items.append(item)
                     seen_ids.add(item["id"])
-                time.sleep(1)
+                time.sleep(random.uniform(2.5, 5.0))
 
         browser.close()
 
