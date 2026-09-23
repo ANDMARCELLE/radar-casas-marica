@@ -276,6 +276,15 @@ def extract_listing(page, site_name, url):
             image = page.get_attribute("meta[name='twitter:image']", "content", timeout=2000) or ""
     except Exception:
         pass
+    if image and image.startswith("/"):
+        # Alguns sites (QuintoAndar) devolvem a foto com endereço relativo
+        # ("/img/..."), que sem o domínio na frente não carrega em nenhuma
+        # outra página.
+        origin_match = re.match(r"(https?://[^/]+)", url)
+        if origin_match:
+            image = origin_match.group(1) + image
+        else:
+            image = ""
 
     bedrooms = find_bedrooms(text)
     if bedrooms is None or bedrooms < MIN_BEDROOMS:

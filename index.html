@@ -193,6 +193,14 @@
   .found-at{font-size:0.76rem;color:var(--text-muted);}
   .card-link{color:var(--teal);font-weight:600;text-decoration:none;font-size:0.86rem;}
   .card-link:hover{text-decoration:underline;}
+  .discard-btn{
+    background:none;border:1px solid var(--border);color:var(--text-muted);
+    font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:600;
+    padding:5px 11px;border-radius:100px;cursor:pointer;white-space:nowrap;
+  }
+  .discard-btn:hover{border-color:#7a3b3b;color:#e8a0a0;}
+  .card.is-dismissed{opacity:0.55;}
+  .card.is-dismissed .discard-btn{border-color:var(--teal);color:var(--teal);}
 
   .empty{
     background:var(--surface);border:1px dashed var(--border);border-radius:14px;
@@ -255,6 +263,7 @@
     <div class="sort-toggle">
       <button class="sort-btn active" id="sortPriceBtn">Mais barato</button>
       <button class="sort-btn" id="sortNewBtn">Mais novo</button>
+      <button class="sort-btn" id="dismissedToggle" style="display:none;">Descartados (0)</button>
     </div>
   </div>
   <div id="listings"></div>
@@ -314,6 +323,25 @@
 
   let sortMode = 'price'; // 'price' ou 'new'
   let lastListings = [];
+  let showDismissed = false;
+
+  function getDismissed(){
+    try{ return JSON.parse(localStorage.getItem('dismissed') || '[]'); }
+    catch(e){ return []; }
+  }
+  function setDismissed(list){
+    try{ localStorage.setItem('dismissed', JSON.stringify(list)); }catch(e){}
+  }
+  function dismissListing(id){
+    const list = getDismissed();
+    if(!list.includes(id)) list.push(id);
+    setDismissed(list);
+    render(lastListings);
+  }
+  function undismissListing(id){
+    setDismissed(getDismissed().filter(x => x !== id));
+    render(lastListings);
+  }
 
   function sortListings(listings){
     const copy = [...listings];
@@ -328,26 +356,41 @@
     const listEl = document.getElementById('listings');
     const totalEl = document.getElementById('totalCount');
     const labelEl = document.getElementById('listLabel');
-    totalEl.textContent = listings.length;
-    labelEl.textContent = listings.length ? `Anúncios encontrados (${listings.length})` : 'Anúncios';
+    const dismissedIds = getDismissed();
+    const visible = showDismissed ? listings : listings.filter(d => !dismissedIds.includes(d.id));
 
-    if(!listings.length){
-      listEl.innerHTML = `<div class="empty"><strong>Nenhum anúncio ainda</strong>A primeira varredura do GitHub Actions ainda não rodou ou não achou nada. Isso é normal na primeira hora.</div>`;
+    totalEl.textContent = visible.length;
+    labelEl.textContent = visible.length ? `Anúncios encontrados (${visible.length})` : 'Anúncios';
+
+    const dismissedToggle = document.getElementById('dismissedToggle');
+    const hiddenCount = listings.length - listings.filter(d => !dismissedIds.includes(d.id)).length;
+    dismissedToggle.textContent = showDismissed
+      ? `← Ver só os ativos`
+      : `Descartados (${hiddenCount})`;
+    dismissedToggle.style.display = (hiddenCount > 0 || showDismissed) ? '' : 'none';
+
+    if(!visible.length){
+      listEl.innerHTML = `<div class="empty"><strong>${showDismissed ? 'Nada descartado' : 'Nenhum anúncio ainda'}</strong>${showDismissed ? 'Você ainda não descartou nenhum anúncio.' : 'A primeira varredura do GitHub Actions ainda não rodou ou não achou nada. Isso é normal na primeira hora.'}</div>`;
       return;
     }
 
-    const sorted = sortListings(listings);
+    const sorted = sortListings(visible);
     const recentCutoff = Date.now() - 1000*60*60*6;
 
     listEl.innerHTML = sorted.map(d => {
       const badge = priceBadge(d.price||0);
       const isNew = d.foundAt && new Date(d.foundAt).getTime() > recentCutoff;
+      const isDismissed = dismissedIds.includes(d.id);
       const cardClasses = ['card'];
-      if(isNew) cardClasses.push('is-new');
-      if(badge.cls === 'ideal') cardClasses.push('tier-ideal');
+      if(isNew && !isDismissed) cardClasses.push('is-new');
+      if(badge.cls === 'ideal' && !isDismissed) cardClasses.push('tier-ideal');
+      if(isDismissed) cardClasses.push('is-dismissed');
       const thumb = d.image
         ? `<img class="thumb" src="${escapeHtml(d.image)}" alt="" loading="lazy" onerror="this.remove()">`
         : `<div class="thumb"></div>`;
+      const discardBtn = isDismissed
+        ? `<button class="discard-btn" onclick="undismissListing('${d.id}')" title="Trazer de volta">↺ Trazer de volta</button>`
+        : `<button class="discard-btn" onclick="dismissListing('${d.id}')" title="Não quero ver este de novo">✕ Descartar</button>`;
       return `
         <div class="${cardClasses.join(' ')}">
           ${thumb}
@@ -367,12 +410,22 @@
             </div>
             <div class="card-bottom">
               <span class="found-at">encontrado ${fmtRelative(d.foundAt)}</span>
-              ${d.url ? `<a class="card-link" href="${escapeHtml(d.url)}" target="_blank" rel="noopener">Ver anúncio →</a>` : ''}
+              <div style="display:flex;gap:12px;align-items:center;">
+                ${discardBtn}
+                ${d.url ? `<a class="card-link" href="${escapeHtml(d.url)}" target="_blank" rel="noopener">Ver anúncio →</a>` : ''}
+              </div>
             </div>
           </div>
         </div>`;
     }).join('');
   }
+  window.dismissListing = dismissListing;
+  window.undismissListing = undismissListing;
+
+  document.getElementById('dismissedToggle').addEventListener('click', () => {
+    showDismissed = !showDismissed;
+    render(lastListings);
+  });
 
   document.getElementById('sortPriceBtn').addEventListener('click', () => {
     sortMode = 'price';
