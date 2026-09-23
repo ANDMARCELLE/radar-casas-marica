@@ -233,24 +233,57 @@ def extract_listing(page, site_name, url):
         return None
 
     prices = [p for p in find_prices(text) if p and 200 <= p <= 20000]
-    if not prices:
-        return None
-    base_rent = min(prices)
 
-    condo = 0
-    m = re.search(r"cond(?:om[íi]nio)?\.?\s*(?:R\$\s*[\d.,]+|isento)", text, re.IGNORECASE)
-    if m and "isento" not in m.group(0).lower():
-        condo = money_to_float(re.search(r"R\$\s*[\d.,]+", m.group(0)).group()) or 0
+    # QuintoAndar anuncia o CUSTO TOTAL já pronto ("R$ 1.327 total") — usar isso
+    # direto evita somar aluguel + condomínio + IPTU errado a partir de números
+    # soltos na página.
+    total_match = re.search(r"R\$\s*([\d.,]+)\s*total", text, re.IGNORECASE)
+    if total_match:
+        total = money_to_float("R$ " + total_match.group(1))
+        base_rent = total
+        condo = 0
+        iptu = 0
+    elif site_name == "Chaves na Mão":
+        # O valor do aluguel vem embutido na própria URL (...-RS2999/id-.../),
+        # que é uma fonte muito mais confiável do que o menor "R$" achado no texto.
+        url_price = re.search(r"-RS(\d+)(?:/|$)", url)
+        base_rent = float(url_price.group(1)) if url_price else (min(prices) if prices else None)
+        condo = 0
+        m = re.search(r"cond(?:om[íi]nio)?\.?\s*(?:R\$\s*[\d.,]+|isento)", text, re.IGNORECASE)
+        if m and "isento" not in m.group(0).lower():
+            val = money_to_float(re.search(r"R\$\s*[\d.,]+", m.group(0)).group()) or 0
+            if val != base_rent:
+                condo = val
+        iptu = 0
+        m = re.search(r"IPTU\.?\s*(?:R\$\s*[\d.,]+|isento)", text, re.IGNORECASE)
+        if m and "isento" not in m.group(0).lower():
+            val = money_to_float(re.search(r"R\$\s*[\d.,]+", m.group(0)).group()) or 0
+            if val > base_rent:
+                val = round(val / 12, 2)  # provavelmente valor anual
+            if val != base_rent and val != condo:
+                iptu = val
+        total = round(base_rent + condo + iptu, 2) if base_rent else None
+    else:
+        if not prices:
+            return None
+        base_rent = min(prices)
+        condo = 0
+        m = re.search(r"cond(?:om[íi]nio)?\.?\s*(?:R\$\s*[\d.,]+|isento)", text, re.IGNORECASE)
+        if m and "isento" not in m.group(0).lower():
+            val = money_to_float(re.search(r"R\$\s*[\d.,]+", m.group(0)).group()) or 0
+            if val != base_rent:
+                condo = val
+        iptu = 0
+        m = re.search(r"IPTU\.?\s*(?:R\$\s*[\d.,]+|isento)", text, re.IGNORECASE)
+        if m and "isento" not in m.group(0).lower():
+            val = money_to_float(re.search(r"R\$\s*[\d.,]+", m.group(0)).group()) or 0
+            if val > base_rent:
+                val = round(val / 12, 2)  # provavelmente valor anual
+            if val != base_rent and val != condo:
+                iptu = val
+        total = round(base_rent + condo + iptu, 2)
 
-    iptu = 0
-    m = re.search(r"IPTU\.?\s*(?:R\$\s*[\d.,]+|isento)", text, re.IGNORECASE)
-    if m and "isento" not in m.group(0).lower():
-        iptu = money_to_float(re.search(r"R\$\s*[\d.,]+", m.group(0)).group()) or 0
-        if iptu > base_rent:
-            iptu = round(iptu / 12, 2)  # provavelmente valor anual
-
-    total = round(base_rent + condo + iptu, 2)
-    if total > MAX_TOTAL_PRICE:
+    if not total or total > MAX_TOTAL_PRICE:
         return None
 
     title = (page.title() or "Casa em Maricá").split(" - ")[0].split(" | ")[0].strip()
