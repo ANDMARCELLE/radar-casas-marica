@@ -2,7 +2,7 @@
 
 Monitoramento automático de casas com quintal para alugar em Maricá-RJ (ZAP Imóveis, OLX, QuintoAndar, Chaves na Mão, Imovelweb, Renato Imóveis, Kiffer Imóveis). Roda sozinho, de hora em hora, via GitHub Actions — sem depender de nenhuma sessão do Claude ficar aberta.
 
-- **Critérios**: casa, 2+ quartos, com quintal, custo total (aluguel + condomínio + IPTU) até R$ 3.500 — destaque para até R$ 2.500.
+- **Critérios**: casa (sem duplex), 2+ quartos, com quintal, custo total (aluguel + condomínio + IPTU) até R$ 3.500 — destaque para até R$ 2.500.
 - **Aviso**: push via [ntfy.sh](https://ntfy.sh) (celular, grátis, sem cadastro) + notificação no navegador enquanto a página do painel estiver aberta (PC).
 - **Painel**: página estática (`index.html`) publicada via GitHub Pages, lê `data/listings.json`.
 - **Robô**: `scraper.py`, roda dentro do GitHub Actions (`.github/workflows/scan.yml`), sem custo de IA — usa regras de texto (regex), então pode falhar se algum site mudar de layout.

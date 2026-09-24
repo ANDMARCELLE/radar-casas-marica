@@ -47,7 +47,7 @@ YARD_KEYWORDS = [
     "quintal", "área externa", "area externa", "jardim", "gramado",
     "espaço externo", "espaco externo", "terreno amplo",
 ]
-EXCLUDE_TYPE_KEYWORDS = ["apartamento", "kitnet", "studio", "flat", "sala comercial", "loja", "galpão", "terreno "]
+EXCLUDE_TYPE_KEYWORDS = ["apartamento", "kitnet", "studio", "flat", "sala comercial", "loja", "galpão", "terreno ", "duplex"]
 
 COOKIE_BUTTON_TEXTS = [
     "Aceitar", "Aceitar todos", "Aceitar cookies", "Entendi", "OK", "Concordo",
@@ -284,6 +284,11 @@ def extract_listing(page, site_name, url):
         raise SiteBlocked(site_name)
 
     if not looks_like_house(text[:600]) and not looks_like_house(page.title() or ""):
+        return None
+
+    # "duplex" pode aparecer só na ficha técnica, bem depois do início do
+    # texto — checa a página inteira, não só os primeiros 600 caracteres.
+    if "duplex" in text.lower() or "duplex" in (page.title() or "").lower():
         return None
 
     image = ""
