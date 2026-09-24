@@ -243,6 +243,22 @@ def collect_imovelweb(page):
     return list(dict.fromkeys(hrefs))[:MAX_DETAIL_PAGES_PER_SITE]
 
 
+def collect_kifferimoveis(page):
+    url = "https://www.kifferimoveis.com.br/imoveis/para-alugar/casa/marica?finalidade=residencial"
+    try:
+        page.goto(url, wait_until="domcontentloaded", timeout=45000)
+    except Exception as e:
+        log(f"Kiffer Imóveis: página de busca falhou ({e}), pulando site nesta rodada")
+        return []
+    page.wait_for_timeout(2500)
+    dismiss_cookie_banner(page)
+    hrefs = page.eval_on_selector_all(
+        "a[href*='/imovel/']",
+        "els => els.map(e => e.href.split('?')[0])",
+    )
+    return list(dict.fromkeys(hrefs))[:MAX_DETAIL_PAGES_PER_SITE]
+
+
 SITES = {
     "ZAP Imóveis": collect_zap,
     "Imovelweb": collect_imovelweb,
@@ -250,6 +266,7 @@ SITES = {
     "QuintoAndar": collect_quintoandar,
     "OLX": collect_olx,
     "Renato Imóveis": collect_renatoimoveis,
+    "Kiffer Imóveis": collect_kifferimoveis,
 }
 
 
@@ -313,10 +330,12 @@ def extract_listing(page, site_name, url):
                 iptu = val
         return condo, iptu
 
-    # QuintoAndar anuncia o CUSTO TOTAL já pronto ("R$ 1.327 total") — usar isso
-    # direto evita somar aluguel + condomínio + IPTU errado a partir de números
-    # soltos na página.
-    total_match = re.search(r"R\$\s*([\d.,]+)\s*total", text, re.IGNORECASE)
+    # QuintoAndar e Kiffer Imóveis anunciam o CUSTO TOTAL já pronto
+    # ("R$ 1.327 total" / "Pacote de locação R$ 2.490/mês") — usar isso
+    # direto evita somar aluguel + condomínio + IPTU errado a partir de
+    # números soltos na página.
+    total_match = re.search(r"R\$\s*([\d.,]+)\s*total", text, re.IGNORECASE) or \
+        re.search(r"Pacote de loca[çc][ãa]o\s*R\$\s*([\d.,]+)", text, re.IGNORECASE)
     if total_match:
         total = money_to_float("R$ " + total_match.group(1))
         base_rent = total
