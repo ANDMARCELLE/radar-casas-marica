@@ -61,7 +61,11 @@ def log(msg):
 def dismiss_cookie_banner(page):
     for text in COOKIE_BUTTON_TEXTS:
         try:
-            btn = page.get_by_text(text, exact=False).first
+            # exact=True é essencial aqui: com exact=False o Playwright faz
+            # substring case-insensitive, e "OK" casa dentro de "Facebook"
+            # (contém "ok") — já clicou sem querer num link de Facebook e
+            # navegou pra fora da busca (bug real, achado testando a OLX).
+            btn = page.get_by_text(text, exact=True).first
             if btn.is_visible(timeout=1000):
                 btn.click(timeout=1000)
                 page.wait_for_timeout(300)
