@@ -253,5 +253,35 @@
     "url": "https://www.kifferimoveis.com.br/imovel/casa-marica-2-quartos-62-m/CA8069-BCC",
     "image": "https://imgs.kenlo.io/VWRCUkQ2Tnp3d1BJRDBJVe1szkhnWr9UfpZS9ftWwjXgr7v5Znen3XVcMHllDVRJJeIbi3YwVYEtu1Z21tV87E4jmM1Hc+SatiSq4IS-4o+6jXar2Z3Sk4Hn9c3nWeTnxIll44-WIA6XiLJJHNYuCUl+dstTWkfKbYOOHmRfpjmjg2rhfolZXFoLgQ0DwClsxgGOALqn02Ae42SOVdbRixnVTaz9KgBCOLMNAdIz7EIJ8RC9W0J8p0oF7Jq1qTLdaOenJpi9yWxNWAZ8vJq+TqjzwtiOK59nSeUyO3cb51URUaJf1-aKA+9jrwcLou-TCwSW3hrDkec3f8vtBcFNmKoAiA3KHrVMvxmzx4fAg-evaUqHMlc98+qYrPTiaPb2GP32OUSjh5ZO25zKLMsWAYuhGGcIRmR2LiEDpQD6vbmF4lLmcXjAtlFHVhOSnI5y42Q6.jpg",
     "foundAt": "2026-09-24T13:37:06Z"
+  },
+  {
+    "id": "chavesnamao-com-br-imovel-casa-para-alugar-2-quartos-com-garagem-rj-marica-jardim-atlantico-leste-itaipuacu-rs2999-id-44320536",
+    "title": "Casa com 2 quartos na Rua Setenta, 200, Jardim Atlântico Leste (Itaipuaçu), Maricá",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 2999.0,
+    "condo": 0,
+    "iptu": 150.0,
+    "price": 3149.0,
+    "hasYard": true,
+    "site": "Chaves na Mão",
+    "url": "https://www.chavesnamao.com.br/imovel/casa-para-alugar-2-quartos-com-garagem-rj-marica-jardim-atlantico-leste-itaipuacu--RS2999/id-44320536/",
+    "image": "https://www.chavesnamao.com.br/imn/0850x0450/N/60/imoveis/646648/44320536/rj-marica-jardim-atlantico-leste-itaipuacu-rua-setenta-casa-para-alugar-2-quartos-6a47cc80-00.jpg",
+    "foundAt": "2026-09-25T07:45:07Z"
+  },
+  {
+    "id": "chavesnamao-com-br-imovel-casa-para-alugar-2-quartos-com-garagem-rj-marica-ponta-grossa-225m2-rs3000-id-40841413",
+    "title": "Casa com 2 quartos no Ponta Grossa, Maricá",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 3000.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 3000.0,
+    "hasYard": true,
+    "site": "Chaves na Mão",
+    "url": "https://www.chavesnamao.com.br/imovel/casa-para-alugar-2-quartos-com-garagem-rj-marica-ponta-grossa-225m2-RS3000/id-40841413/",
+    "image": "https://www.chavesnamao.com.br/imn/0850x0450/N/60/imoveis/1235406/40841413/rj-marica-ponta-grossa-nao-encontrado-casa-sobrado-para-alugar-2-quartos-69c4bd01-1.jpg",
+    "foundAt": "2026-09-25T07:45:12Z"
   }
 ]
