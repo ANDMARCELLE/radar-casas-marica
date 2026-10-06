@@ -418,5 +418,35 @@
     "url": "https://www.kifferimoveis.com.br/imovel/casa-marica-3-quartos-104-m/CA8979-BCC",
     "image": "https://imgs.kenlo.io/VWRCUkQ2Tnp3d1BJRDBJVe1szkhnWr9UfpZS9ftWwjXgr7v5Znen3XVcMHllDVRJJeIbi3YwVYEtu0pE1dV26DNvguo8e7Glrg+Y-YDE6JKGrUi7+77P47Oe9dnwWt6Gw58DiPXCD1CIhLdXSNUeGlJgSc1CFATMc4C4EGlJ-CC3t3X8SIJiTzVt2AovvCtI4HSmX6qUq18W6z34D-yGjA6tXPH2KnJ8EOdHR9o47l9MqBG1U1ByqR9Q9JG2ozrBZrT0PpW61WIYQklkpNCiTqzwi82OZ5htFvpqLHoC91cXWaoQmvqIQKNz8k8NqufBERmHlELVhPYgYMf+HIVXmacKlBDBErdJ6Eu8zoXEg6L+bEuBMlI59b7N-6a3b6r6HKmlIyWAj54Mu7DZPclaaK6nCnNEH2JlITwA+17ktPyL7AD5bSnYrhAGWB3fg9xq7GF3Pw==.jpg",
     "foundAt": "2026-10-04T12:20:48Z"
+  },
+  {
+    "id": "chavesnamao-com-br-imovel-casa-para-alugar-2-quartos-rj-marica-sao-jose-do-imbassai-188m2-rs2100-id-44306021",
+    "title": "Casa com 2 quartos no São José do Imbassaí, Maricá",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 2100.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 2100.0,
+    "hasYard": true,
+    "site": "Chaves na Mão",
+    "url": "https://www.chavesnamao.com.br/imovel/casa-para-alugar-2-quartos-rj-marica-sao-jose-do-imbassai-188m2-RS2100/id-44306021/",
+    "image": "https://www.chavesnamao.com.br/imn/0850x0450/N/60/imoveis/643222/44306021/rj-marica-sao-jose-do-imbassai-nao-encontrado-casa-sobrado-para-alugar-2-quartos-6a472569-1.jpg",
+    "foundAt": "2026-10-06T02:57:43Z"
+  },
+  {
+    "id": "chavesnamao-com-br-imovel-casa-para-alugar-2-quartos-com-garagem-rj-marica-ponta-negra-236m2-rs2200-id-44922435",
+    "title": "Casa com 2 quartos no Ponta Negra, Maricá",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 2200.0,
+    "condo": 0,
+    "iptu": 300.0,
+    "price": 2500.0,
+    "hasYard": true,
+    "site": "Chaves na Mão",
+    "url": "https://www.chavesnamao.com.br/imovel/casa-para-alugar-2-quartos-com-garagem-rj-marica-ponta-negra-236m2-RS2200/id-44922435/",
+    "image": "https://www.chavesnamao.com.br/imn/0850x0450/N/60/imoveis/1363141/44922435/rj-marica-ponta-negra-nao-encontrado-casa-sobrado-para-alugar-2-quartos-6a700bf2-1.jpg",
+    "foundAt": "2026-10-06T02:57:55Z"
   }
 ]
