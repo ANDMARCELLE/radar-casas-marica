@@ -463,5 +463,20 @@
     "url": "https://www.kifferimoveis.com.br/imovel/casa-marica-3-quartos-78-m/CA7487-BCC",
     "image": "https://imgs.kenlo.io/VWRCUkQ2Tnp3d1BJRDBJVe1szkhnWr9UfpZS9ftWwjXgr7v5Znen3XVcMHllDVRJJeIbi3YwVYEtu0h6yOVK5xwmm+UmUvqP5xGB4tvP4v7Fnh6d-Ij4iJ7qx9jgXsPS9Jk23-P8H0TztJxbGPgGY39pObVjbB-jGqWBDWkO+mnXq2fSaYB3RDoN9V8ZoU9P3VjlRr2ByHs5xiaBBszltnWvUqzeGnx-GrMNAdIz7EIJ8RC9W0J8p0oF7Jq1qTLdaOenJpi9yWxNWAZ8vJq+TqjzwtiOK59nSeUyO3cb51URUaJf1-aKA+9jrwcLou-TCwSW3hrDkec3f8vtBcFNmKoAiA3KHrVMvxmzx4fAg-evaUqHMlc98+qYrPTiaPb2GP32OUSjh5ZO25zKLMsWAYuhGGcIRmR2LiEDpQD6vbmF4lLmcXjAtlFHVhOSnI5y42Q6.jpg",
     "foundAt": "2026-10-06T21:40:46Z"
+  },
+  {
+    "id": "kifferimoveis-com-br-imovel-casa-marica-2-quartos-90-m-ca9000-bcc",
+    "title": "Casa com 2 quartos para alugar, 90 m² por R$ 3.300/mês",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 3300.01,
+    "condo": 0,
+    "iptu": 0,
+    "price": 3300.01,
+    "hasYard": true,
+    "site": "Kiffer Imóveis",
+    "url": "https://www.kifferimoveis.com.br/imovel/casa-marica-2-quartos-90-m/CA9000-BCC",
+    "image": "https://imgs.kenlo.io/VWRCUkQ2Tnp3d1BJRDBJVe1szkhnWr9UfpZS9ftWwjXgr7v5Znen3XVcMHllDVRJJeIbi3YwVYEtu1dB9o0zwQ5itY87TbSFhS6DhJus34eW9m2Z6LLkr5LVjOnIUILD16sm9vLoSwH97bJ3YOAANgUoV6xZbyS7db2-YWptvmWN-l3-UINdZjBQgysxkD58-ESHbJu88EEtgnGpDNHx9X7ddqn+JUZNNLMNAdIz7EIJ8RC9W0J8p0oF7Jq1qTLdaOenJpi9yWxNWAZ8vJq+TqjzwtiOK59nSeUyO3cb51URUaJf1-aKA+9jrwcLou-TCwSW3hrDkec3f8vtBcFNmKoAiA3KHrVMvxmzx4fAg-evaUqHMlc98+qYrPTiaPb2GP32OUSjh5ZO25zKLMsWAYuhGGcIRmR2LiEDpQD6vbmF4lLmcXjAtlFHVhOSnI5y42Q6.jpg",
+    "foundAt": "2026-10-08T22:06:37Z"
   }
 ]
