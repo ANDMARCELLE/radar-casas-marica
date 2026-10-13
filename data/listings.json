@@ -493,5 +493,35 @@
     "url": "https://www.kifferimoveis.com.br/imovel/casa-marica-2-quartos-90-m/CA9010-BCC",
     "image": "https://imgs.kenlo.io/VWRCUkQ2Tnp3d1BJRDBJVe1szkhnWr9UfpZS9ftWwjXgr7v5Znen3XVcMHllDVRJJeIbi3YwVYEtu2ZbgIJ21iYbzvsrboGlmiTbwbyFyYuiiHWU5ajplpDd7P3gR5rew6s9jLCpLH-zjKFpcd0rGEBHPLdXVxznBaK3FyVV+mWqrXWQQrhHRU0KgQIQ1Qp1nWuYW4OT2QcVwgaUW8j3ujCsR5LoAE4GOLMNAdIz7EIJ8RC9W0J8p0oF7Jq1qTLdaOenJpi9yWxNWAZ8vJq+TqjzwtiOK59nSeUyO3cb51URUaJf1-aKA+9jrwcLou-TCwSW3hrDkec3f8vtBcFNmKoAiA3KHrVMvxmzx4fAg-evaUqHMlc98+qYrPTiaPb2GP32OUSjh5ZO25zKLMsWAYuhGGcIRmR2LiEDpQD6vbmF4lLmcXjAtlFHVhOSnI5y42Q6.jpg",
     "foundAt": "2026-10-12T17:54:33Z"
+  },
+  {
+    "id": "chavesnamao-com-br-imovel-casa-para-alugar-2-quartos-com-garagem-rj-marica-itaipuacu-220m2-rs2400-id-47610797",
+    "title": "Casa com 2 quartos em Itaipuaçú, Maricá",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 2400.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 2400.0,
+    "hasYard": true,
+    "site": "Chaves na Mão",
+    "url": "https://www.chavesnamao.com.br/imovel/casa-para-alugar-2-quartos-com-garagem-rj-marica-itaipuacu-220m2-RS2400/id-47610797/",
+    "image": "https://www.chavesnamao.com.br/imn/0850x0450/N/60/imoveis/643222/47610797/rj-marica-itaipuacu-nao-encontrado-casa-sobrado-para-alugar-2-quartos-6ac9a83a-1.jpg",
+    "foundAt": "2026-10-13T07:41:28Z"
+  },
+  {
+    "id": "chavesnamao-com-br-imovel-casa-para-alugar-2-quartos-com-garagem-rj-marica-mumbuca-150m2-rs2600-id-44641926",
+    "title": "Casa com 2 quartos no Mumbuca, Maricá",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 2600.0,
+    "condo": 0,
+    "iptu": 600.0,
+    "price": 3200.0,
+    "hasYard": true,
+    "site": "Chaves na Mão",
+    "url": "https://www.chavesnamao.com.br/imovel/casa-para-alugar-2-quartos-com-garagem-rj-marica-mumbuca-150m2-RS2600/id-44641926/",
+    "image": "https://www.chavesnamao.com.br/imn/0850x0450/N/60/imoveis/1363141/44641926/rj-marica-mumbuca-rua-andrelina-carlota-da-conceicao-casa-sobrado-para-alugar-2-quartos-6a555d67-1.jpg",
+    "foundAt": "2026-10-13T07:41:34Z"
   }
 ]
