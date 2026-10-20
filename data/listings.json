@@ -733,5 +733,20 @@
     "url": "https://www.quintoandar.com.br/imovel/895793171/alugar/casa-2-quartos-itaupuacu-marica",
     "image": "https://www.quintoandar.com.br/img/med/original895793171-537.393896166766DSC03645.jpg",
     "foundAt": "2026-10-19T23:37:11Z"
+  },
+  {
+    "id": "quintoandar-com-br-imovel-895793171-alugar-casa-2-quartos-recanto-de-itaipuacu-marica",
+    "title": "Casa com 2 quartos para alugar em Recanto de Itaipuaçu, Maricá por R$ 3.500,00",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 3500.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 3500.0,
+    "hasYard": true,
+    "site": "QuintoAndar",
+    "url": "https://www.quintoandar.com.br/imovel/895793171/alugar/casa-2-quartos-recanto-de-itaipuacu-marica",
+    "image": "https://www.quintoandar.com.br/img/med/original895793171-537.393896166766DSC03645.jpg",
+    "foundAt": "2026-10-20T19:13:21Z"
   }
 ]
