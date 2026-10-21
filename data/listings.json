@@ -763,5 +763,20 @@
     "url": "https://www.quintoandar.com.br/imovel/895802055/alugar/casa-2-quartos-inoa-marica",
     "image": "https://www.quintoandar.com.br/img/med/original895802055-220.9219020965244DSC03919.jpg",
     "foundAt": "2026-10-21T13:45:55Z"
+  },
+  {
+    "id": "quintoandar-com-br-imovel-895803871-alugar-casa-2-quartos-sao-jose-de-imbassai-marica",
+    "title": "Casa com 2 quartos para alugar em São José de Imbassai, Maricá por R$ 2.700,00",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 2700.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 2700.0,
+    "hasYard": true,
+    "site": "QuintoAndar",
+    "url": "https://www.quintoandar.com.br/imovel/895803871/alugar/casa-2-quartos-sao-jose-de-imbassai-marica",
+    "image": "https://www.quintoandar.com.br/img/med/original895803871-312.5568476567594DSC04004.jpg",
+    "foundAt": "2026-10-21T22:19:42Z"
   }
 ]
