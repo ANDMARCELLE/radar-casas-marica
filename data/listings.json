@@ -778,5 +778,35 @@
     "url": "https://www.quintoandar.com.br/imovel/895803871/alugar/casa-2-quartos-sao-jose-de-imbassai-marica",
     "image": "https://www.quintoandar.com.br/img/med/original895803871-312.5568476567594DSC04004.jpg",
     "foundAt": "2026-10-21T22:19:42Z"
+  },
+  {
+    "id": "chavesnamao-com-br-imovel-casa-para-alugar-3-quartos-com-garagem-rj-marica-sao-jose-do-imbassai-110m2-rs2000-id-47824708",
+    "title": "Casa com 3 quartos no São José do Imbassaí, Maricá",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 2000.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 2000.0,
+    "hasYard": true,
+    "site": "Chaves na Mão",
+    "url": "https://www.chavesnamao.com.br/imovel/casa-para-alugar-3-quartos-com-garagem-rj-marica-sao-jose-do-imbassai-110m2-RS2000/id-47824708/",
+    "image": "https://www.chavesnamao.com.br/imn/0850x0450/N/60/imoveis/643222/47824708/rj-marica-nao-encontrado-casa-sobrado-para-alugar-3-quartos-6ad2e210-1.jpg",
+    "foundAt": "2026-10-24T18:07:26Z"
+  },
+  {
+    "id": "quintoandar-com-br-imovel-895807050-alugar-casa-2-quartos-itaipuacu-marica",
+    "title": "Casa com 2 quartos para alugar em Itaipuaçu, Maricá por R$ 2.375,00",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 2375.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 2375.0,
+    "hasYard": true,
+    "site": "QuintoAndar",
+    "url": "https://www.quintoandar.com.br/imovel/895807050/alugar/casa-2-quartos-itaipuacu-marica",
+    "image": "https://www.quintoandar.com.br/img/med/original895807050-685.4050393051634DSC04333.jpg",
+    "foundAt": "2026-10-24T18:07:38Z"
   }
 ]
