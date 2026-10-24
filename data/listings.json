@@ -808,5 +808,20 @@
     "url": "https://www.quintoandar.com.br/imovel/895807050/alugar/casa-2-quartos-itaipuacu-marica",
     "image": "https://www.quintoandar.com.br/img/med/original895807050-685.4050393051634DSC04333.jpg",
     "foundAt": "2026-10-24T18:07:38Z"
+  },
+  {
+    "id": "quintoandar-com-br-imovel-895809736-alugar-casa-3-quartos-pindobas-marica",
+    "title": "Casa com 3 quartos para alugar em Pindobas, Maricá por R$ 2.600,00",
+    "address": "Maricá - RJ",
+    "bedrooms": 3,
+    "baseRent": 2600.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 2600.0,
+    "hasYard": true,
+    "site": "QuintoAndar",
+    "url": "https://www.quintoandar.com.br/imovel/895809736/alugar/casa-3-quartos-pindobas-marica",
+    "image": "https://www.quintoandar.com.br/img/med/original895809736-491.006358393587DSC04168.jpg",
+    "foundAt": "2026-10-24T20:52:41Z"
   }
 ]
