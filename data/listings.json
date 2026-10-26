@@ -823,5 +823,35 @@
     "url": "https://www.quintoandar.com.br/imovel/895809736/alugar/casa-3-quartos-pindobas-marica",
     "image": "https://www.quintoandar.com.br/img/med/original895809736-491.006358393587DSC04168.jpg",
     "foundAt": "2026-10-24T20:52:41Z"
+  },
+  {
+    "id": "quintoandar-com-br-imovel-895814796-alugar-casa-2-quartos-atlantico-central-marica",
+    "title": "Casa com 2 quartos para alugar em Atlântico Central , Maricá por R$ 2.500,00",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 2500.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 2500.0,
+    "hasYard": true,
+    "site": "QuintoAndar",
+    "url": "https://www.quintoandar.com.br/imovel/895814796/alugar/casa-2-quartos-atlantico-central-marica",
+    "image": "https://www.quintoandar.com.br/img/med/original895814796-958.7126156232835DSC04409.jpg",
+    "foundAt": "2026-10-26T23:51:34Z"
+  },
+  {
+    "id": "kifferimoveis-com-br-imovel-casa-marica-2-quartos-90-m-ca8848-bcc",
+    "title": "Casa com 2 quartos para alugar, 90 m² por R$ 3.340/mês",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 3340.9,
+    "condo": 0,
+    "iptu": 0,
+    "price": 3340.9,
+    "hasYard": true,
+    "site": "Kiffer Imóveis",
+    "url": "https://www.kifferimoveis.com.br/imovel/casa-marica-2-quartos-90-m/CA8848-BCC",
+    "image": "https://imgs.kenlo.io/VWRCUkQ2Tnp3d1BJRDBJVe1szkhnWr9UfpZS9ftWwjXgr7v5Znen3XVcMHllDVRJJeIbi3YwVYEtux1r8-J0yUgDuNsoZJuMsQ6JhbvK7oaYk2C-1pDypan1xe-PWfuH6bAI3ovUK3jzifNYG4EeE0xTW+BndCL4eYCQMERy+AuIl2T6H7x9Ek8F41kAzS1LgVGlY4Sv+H0Q3XujEtjXmA+efI-eE193NLMNAdIz7EIJ8RC9W0J8p0oF7Jq1qTLdaOenJpi9yWxNWAZ8vJq+TqjzwtiOK59nSeUyO3cb51URUaJf1-aKA+9jrwcLou-TCwSW3hrDkec3f8vtBcFNmKoAiA3KHrVMvxmzx4fAg-evaUqHMlc98+qYrPTiaPb2GP32OUSjh5ZO25zKLMsWAYuhGGcIRmR2LiEDpQD6vbmF4lLmcXjAtlFHVhOSnI5y42Q6.jpg",
+    "foundAt": "2026-10-26T23:53:23Z"
   }
 ]
