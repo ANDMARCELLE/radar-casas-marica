@@ -943,5 +943,50 @@
     "url": "https://www.quintoandar.com.br/imovel/895829284/alugar/casa-3-quartos-cordeirinho-marica",
     "image": "https://www.quintoandar.com.br/img/med/original895829284-728.9955186096347DSC04784.jpg",
     "foundAt": "2026-10-31T02:20:14Z"
+  },
+  {
+    "id": "quintoandar-com-br-imovel-895825575-alugar-casa-6-quartos-itaipuacu-marica",
+    "title": "Casa com 6 quartos para alugar em Itaipuaçu, Maricá por R$ 3.000,00",
+    "address": "Maricá - RJ",
+    "bedrooms": 6,
+    "baseRent": 3000.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 3000.0,
+    "hasYard": true,
+    "site": "QuintoAndar",
+    "url": "https://www.quintoandar.com.br/imovel/895825575/alugar/casa-6-quartos-itaipuacu-marica",
+    "image": "https://www.quintoandar.com.br/img/med/original895825575-319.20366932940124DSC05042.jpg",
+    "foundAt": "2026-10-31T09:33:56Z"
+  },
+  {
+    "id": "quintoandar-com-br-imovel-895328402-alugar-casa-2-quartos-caxito-pequeno-marica",
+    "title": "Casa com 2 quartos para alugar em Caxito Pequeno, Maricá por R$ 1.190,00",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 1190.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 1190.0,
+    "hasYard": true,
+    "site": "QuintoAndar",
+    "url": "https://www.quintoandar.com.br/imovel/895328402/alugar/casa-2-quartos-caxito-pequeno-marica",
+    "image": "https://www.quintoandar.com.br/img/med/original895328402-140.2024295912314IMGE1528.JPG",
+    "foundAt": "2026-10-31T09:34:31Z"
+  },
+  {
+    "id": "quintoandar-com-br-imovel-895807637-alugar-casa-3-quartos-jacaroa-marica",
+    "title": "Casa com 3 quartos para alugar em Jacaroá, Maricá por R$ 3.400,00",
+    "address": "Maricá - RJ",
+    "bedrooms": 3,
+    "baseRent": 3400.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 3400.0,
+    "hasYard": true,
+    "site": "QuintoAndar",
+    "url": "https://www.quintoandar.com.br/imovel/895807637/alugar/casa-3-quartos-jacaroa-marica",
+    "image": "https://www.quintoandar.com.br/img/med/original895807637-81.15368487407382DSC04061.jpg",
+    "foundAt": "2026-10-31T09:34:36Z"
   }
 ]
