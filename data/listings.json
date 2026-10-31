@@ -928,5 +928,20 @@
     "url": "https://www.quintoandar.com.br/imovel/895716717/alugar/casa-2-quartos-manoel-ribeiro-sul-marica",
     "image": "https://www.quintoandar.com.br/img/med/original895716717-22.219981463907914image.jpg",
     "foundAt": "2026-10-30T22:58:42Z"
+  },
+  {
+    "id": "quintoandar-com-br-imovel-895829284-alugar-casa-3-quartos-cordeirinho-marica",
+    "title": "Casa com 3 quartos para alugar em Cordeirinho, Maricá por R$ 2.700,00",
+    "address": "Maricá - RJ",
+    "bedrooms": 3,
+    "baseRent": 2700.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 2700.0,
+    "hasYard": true,
+    "site": "QuintoAndar",
+    "url": "https://www.quintoandar.com.br/imovel/895829284/alugar/casa-3-quartos-cordeirinho-marica",
+    "image": "https://www.quintoandar.com.br/img/med/original895829284-728.9955186096347DSC04784.jpg",
+    "foundAt": "2026-10-31T02:20:14Z"
   }
 ]
