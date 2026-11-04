@@ -988,5 +988,20 @@
     "url": "https://www.quintoandar.com.br/imovel/895807637/alugar/casa-3-quartos-jacaroa-marica",
     "image": "https://www.quintoandar.com.br/img/med/original895807637-81.15368487407382DSC04061.jpg",
     "foundAt": "2026-10-31T09:34:36Z"
+  },
+  {
+    "id": "quintoandar-com-br-imovel-895828479-alugar-casa-2-quartos-inoa-marica",
+    "title": "Casa com 2 quartos para alugar em Inoã, Maricá por R$ 3.500,00",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 3500.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 3500.0,
+    "hasYard": true,
+    "site": "QuintoAndar",
+    "url": "https://www.quintoandar.com.br/imovel/895828479/alugar/casa-2-quartos-inoa-marica",
+    "image": "https://www.quintoandar.com.br/img/med/original895828479-481.78109564604256DSC05594.jpg",
+    "foundAt": "2026-11-04T06:10:32Z"
   }
 ]
