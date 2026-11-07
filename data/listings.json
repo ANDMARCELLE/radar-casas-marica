@@ -1048,5 +1048,35 @@
     "url": "https://www.chavesnamao.com.br/imovel/casa-para-alugar-2-quartos-com-garagem-rj-marica-itaipuacu-240m2-RS2500/id-47858968/",
     "image": "https://www.chavesnamao.com.br/imn/0850x0450/N/60/imoveis/1363141/47858968/rj-marica-itaipuacu-nao-encontrado-casa-sobrado-para-alugar-2-quartos-6ad43abe-1.jpg",
     "foundAt": "2026-11-06T06:50:13Z"
+  },
+  {
+    "id": "quintoandar-com-br-imovel-895842785-alugar-casa-2-quartos-itapeba-marica",
+    "title": "Casa com 2 quartos para alugar em Itapeba, Maricá por R$ 2.530,00",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 2530.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 2530.0,
+    "hasYard": true,
+    "site": "QuintoAndar",
+    "url": "https://www.quintoandar.com.br/imovel/895842785/alugar/casa-2-quartos-itapeba-marica",
+    "image": "https://www.quintoandar.com.br/img/med/original895842785-928.3525149611246DSC05927.jpg",
+    "foundAt": "2026-11-07T07:05:56Z"
+  },
+  {
+    "id": "quintoandar-com-br-imovel-895838307-alugar-casa-2-quartos-jardim-atlantico-central-marica",
+    "title": "Casa com 2 quartos para alugar em Jardim Atlântico Central, Maricá por R$ 1.350,00",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 1350.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 1350.0,
+    "hasYard": true,
+    "site": "QuintoAndar",
+    "url": "https://www.quintoandar.com.br/imovel/895838307/alugar/casa-2-quartos-jardim-atlantico-central-marica",
+    "image": "https://www.quintoandar.com.br/img/med/original895838307-260.93850119424155DSC06137.jpg",
+    "foundAt": "2026-11-07T07:06:03Z"
   }
 ]
