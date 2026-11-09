@@ -1078,5 +1078,20 @@
     "url": "https://www.quintoandar.com.br/imovel/895838307/alugar/casa-2-quartos-jardim-atlantico-central-marica",
     "image": "https://www.quintoandar.com.br/img/med/original895838307-260.93850119424155DSC06137.jpg",
     "foundAt": "2026-11-07T07:06:03Z"
+  },
+  {
+    "id": "quintoandar-com-br-imovel-895385899-alugar-casa-3-quartos-pindobas-marica",
+    "title": "Casa com 3 quartos para alugar em Pindobas, Maricá por R$ 3.468,00",
+    "address": "Maricá - RJ",
+    "bedrooms": 3,
+    "baseRent": 3468.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 3468.0,
+    "hasYard": true,
+    "site": "QuintoAndar",
+    "url": "https://www.quintoandar.com.br/imovel/895385899/alugar/casa-3-quartos-pindobas-marica",
+    "image": "https://www.quintoandar.com.br/img/med/original895385899-197.80600849682617DSC01448.jpg",
+    "foundAt": "2026-11-09T07:56:33Z"
   }
 ]
