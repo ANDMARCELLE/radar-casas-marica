@@ -1093,5 +1093,35 @@
     "url": "https://www.quintoandar.com.br/imovel/895385899/alugar/casa-3-quartos-pindobas-marica",
     "image": "https://www.quintoandar.com.br/img/med/original895385899-197.80600849682617DSC01448.jpg",
     "foundAt": "2026-11-09T07:56:33Z"
+  },
+  {
+    "id": "chavesnamao-com-br-imovel-casa-para-alugar-2-quartos-com-garagem-rj-marica-sao-jose-do-imbassai-240m2-rs3300-id-47610518",
+    "title": "Casa com 2 quartos no São José do Imbassaí, Maricá",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 3300.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 3300.0,
+    "hasYard": true,
+    "site": "Chaves na Mão",
+    "url": "https://www.chavesnamao.com.br/imovel/casa-para-alugar-2-quartos-com-garagem-rj-marica-sao-jose-do-imbassai-240m2-RS3300/id-47610518/",
+    "image": "https://www.chavesnamao.com.br/imn/0850x0450/N/60/imoveis/362879/47610518/rj-marica-sao-jose-do-imbassai-nao-encontrado-casa-sobrado-para-alugar-2-quartos-6ac9a533-16.jpg",
+    "foundAt": "2026-11-10T02:04:07Z"
+  },
+  {
+    "id": "chavesnamao-com-br-imovel-casa-para-alugar-3-quartos-com-garagem-rj-marica-sao-jose-do-imbassai-262m2-rs2500-id-44038741",
+    "title": "Casa com 3 quartos no São José do Imbassaí, Maricá",
+    "address": "Maricá - RJ",
+    "bedrooms": 3,
+    "baseRent": 2500.0,
+    "condo": 0,
+    "iptu": 460.0,
+    "price": 2960.0,
+    "hasYard": true,
+    "site": "Chaves na Mão",
+    "url": "https://www.chavesnamao.com.br/imovel/casa-para-alugar-3-quartos-com-garagem-rj-marica-sao-jose-do-imbassai-262m2-RS2500/id-44038741/",
+    "image": "https://www.chavesnamao.com.br/imn/0850x0450/N/60/imoveis/488038/44038741/rj-marica-sao-jose-do-imbassai-rua-doutor-creso-ribeiro-casa-sobrado-para-alugar-3-quartos-6a3c970f-1.jpg",
+    "foundAt": "2026-11-10T02:04:13Z"
   }
 ]
