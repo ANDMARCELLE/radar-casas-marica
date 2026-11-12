@@ -1138,5 +1138,35 @@
     "url": "https://www.kifferimoveis.com.br/imovel/casa-marica-2-quartos-80-m/CA4118-BCC",
     "image": "https://imgs.kenlo.io/VWRCUkQ2Tnp3d1BJRDBJVe1szkhnWr9UfpZS9ftWwjXgr7v5Znen3XVcMHllDVRJJeIbi3YwVYEtu2dk1vl+6xUDiJs9beWktnOMh73P9fikh3+cxajUhuvs7uX9bunMlIQeioTCE3r2ooU6fdwHIkZ2SNBTbgTEf6CFGCRLlDfcihvTQodEcUZa1TopmRJu83WLdrjp63QP0jOEPOv+73OIRfu3L1xHNLMNAdIz7EIJ8RC9W0J8p0oF7Jq1qTLdaOenJpi9yWxNWAZ8vJq+TqjzwtiOK59nSeUyO3cb51URUaJf1-aKA+9jrwcLou-TCwSW3hrDkec3f8vtBcFNmKoAiA3KHrVMvxmzx4fAg-evaUqHMlc98+qYrPTiaPb2GP32OUSjh5ZO25zKLMsWAYuhGGcIRmR2LiEDpQD6vbmF4lLmcXjAtlFHVhOSnI5y42Q6.jpg",
     "foundAt": "2026-11-11T21:29:09Z"
+  },
+  {
+    "id": "quintoandar-com-br-imovel-895853907-alugar-casa-2-quartos-0-marica",
+    "title": "Casa com 2 quartos para alugar em 0, Maricá por R$ 2.060,00",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 2060.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 2060.0,
+    "hasYard": true,
+    "site": "QuintoAndar",
+    "url": "https://www.quintoandar.com.br/imovel/895853907/alugar/casa-2-quartos-0-marica",
+    "image": "https://www.quintoandar.com.br/img/med/original895853907-102.09223539952528DSC06717.jpg",
+    "foundAt": "2026-11-12T11:00:29Z"
+  },
+  {
+    "id": "quintoandar-com-br-imovel-895808220-alugar-casa-3-quartos-itaipuacu-marica",
+    "title": "Casa com 3 quartos para alugar em Itaipuaçu, Maricá por R$ 2.900,00",
+    "address": "Maricá - RJ",
+    "bedrooms": 3,
+    "baseRent": 2900.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 2900.0,
+    "hasYard": true,
+    "site": "QuintoAndar",
+    "url": "https://www.quintoandar.com.br/imovel/895808220/alugar/casa-3-quartos-itaipuacu-marica",
+    "image": "https://www.quintoandar.com.br/img/med/original895808220-173.08437149667753DSC06792.jpg",
+    "foundAt": "2026-11-12T11:00:56Z"
   }
 ]
