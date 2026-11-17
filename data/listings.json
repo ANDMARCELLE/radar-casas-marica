@@ -1318,5 +1318,20 @@
     "url": "https://www.quintoandar.com.br/imovel/895865266/alugar/casa-2-quartos-itaipuacu-marica",
     "image": "https://www.quintoandar.com.br/img/med/original895865266-919.6840560285292DSC09828.jpg",
     "foundAt": "2026-11-17T03:49:26Z"
+  },
+  {
+    "id": "quintoandar-com-br-imovel-895617175-alugar-casa-2-quartos-caxito-pequeno-marica",
+    "title": "Casa com 2 quartos para alugar em Caxito Pequeno, Maricá por R$ 2.805,00",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 2805.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 2805.0,
+    "hasYard": true,
+    "site": "QuintoAndar",
+    "url": "https://www.quintoandar.com.br/imovel/895617175/alugar/casa-2-quartos-caxito-pequeno-marica",
+    "image": "https://www.quintoandar.com.br/img/med/original895617175-404.2561993481788DSC04755.jpg",
+    "foundAt": "2026-11-17T22:18:34Z"
   }
 ]
