@@ -1438,5 +1438,35 @@
     "url": "https://www.quintoandar.com.br/imovel/895875900/alugar/casa-2-quartos-guaratiba-marica",
     "image": "https://www.quintoandar.com.br/img/med/original895875900-62.891698323665146DSC00583.jpg",
     "foundAt": "2026-11-23T21:17:52Z"
+  },
+  {
+    "id": "chavesnamao-com-br-imovel-casa-para-alugar-2-quartos-com-garagem-rj-marica-itaipuacu-300m2-rs2400-id-49119160",
+    "title": "Casa com 2 quartos para alugar em Itaipuaçú, Maricá",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 2400.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 2400.0,
+    "hasYard": true,
+    "site": "Chaves na Mão",
+    "url": "https://www.chavesnamao.com.br/imovel/casa-para-alugar-2-quartos-com-garagem-rj-marica-itaipuacu-300m2-RS2400/id-49119160/",
+    "image": "https://www.chavesnamao.com.br/imn/0850x0450/N/60/imoveis/643222/49119160/rj-marica-itaipuacu-nao-encontrado-casa-sobrado-para-alugar-2-quartos-6b03aa75-1.jpg",
+    "foundAt": "2026-11-24T05:58:28Z"
+  },
+  {
+    "id": "chavesnamao-com-br-imovel-casa-para-alugar-2-quartos-com-garagem-rj-marica-jardim-atlantico-leste-itaipuacu-180m2-rs3500-id-49027169",
+    "title": "Casa com 2 quartos para alugar na Rua Ivan dias Pereira, 19, Jardim Atlântico Leste (Itaipuaçu), Maricá",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 3500.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 3500.0,
+    "hasYard": true,
+    "site": "Chaves na Mão",
+    "url": "https://www.chavesnamao.com.br/imovel/casa-para-alugar-2-quartos-com-garagem-rj-marica-jardim-atlantico-leste-itaipuacu-180m2-RS3500/id-49027169/",
+    "image": "https://www.chavesnamao.com.br/imn/0850x0450/N/60/imoveis/247240/49027169/rj-marica-jardim-atlantico-leste-itaipuacu-rua-ivan-dias-pereira-casa-sobrado-para-alugar-2-quartos-6afe657d-1.jpg",
+    "foundAt": "2026-11-24T05:58:39Z"
   }
 ]
