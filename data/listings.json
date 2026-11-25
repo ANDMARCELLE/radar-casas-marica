@@ -1498,5 +1498,20 @@
     "url": "https://www.quintoandar.com.br/imovel/895599783/alugar/casa-2-quartos-bambui-marica",
     "image": "https://www.quintoandar.com.br/img/1200x800/original895599783-231.98303361755578DSC03961.jpg",
     "foundAt": "2026-11-25T02:22:30Z"
+  },
+  {
+    "id": "quintoandar-com-br-imovel-895865842-alugar-casa-2-quartos-zacarias-marica",
+    "title": "Casa com 2 quartos para alugar em Zacarias, Maricá por R$ 1.800,00",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 1800.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 1800.0,
+    "hasYard": true,
+    "site": "QuintoAndar",
+    "url": "https://www.quintoandar.com.br/imovel/895865842/alugar/casa-2-quartos-zacarias-marica",
+    "image": "https://www.quintoandar.com.br/img/1200x800/original895865842-81.36713749612612DSC00812.jpg",
+    "foundAt": "2026-11-25T22:29:44Z"
   }
 ]
