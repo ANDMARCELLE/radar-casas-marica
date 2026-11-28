@@ -1558,5 +1558,20 @@
     "url": "https://www.quintoandar.com.br/imovel/895864999/alugar/casa-2-quartos-inoa-marica",
     "image": "https://www.quintoandar.com.br/img/1200x800/original895864999-758.3675026887967DSC00512.jpg",
     "foundAt": "2026-11-27T18:55:47Z"
+  },
+  {
+    "id": "quintoandar-com-br-imovel-895886900-alugar-casa-2-quartos-cordeirinho-marica",
+    "title": "Casa com 2 quartos para alugar em Cordeirinho, Maricá por R$ 2.500,00",
+    "address": "Maricá - RJ",
+    "bedrooms": 2,
+    "baseRent": 2500.0,
+    "condo": 0,
+    "iptu": 0,
+    "price": 2500.0,
+    "hasYard": true,
+    "site": "QuintoAndar",
+    "url": "https://www.quintoandar.com.br/imovel/895886900/alugar/casa-2-quartos-cordeirinho-marica",
+    "image": "https://www.quintoandar.com.br/img/1200x800/original895886900-153.60233714572868DSC01244.jpg",
+    "foundAt": "2026-11-28T10:19:21Z"
   }
 ]
